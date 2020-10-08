@@ -1,6 +1,9 @@
+import random  
 STARTING_X = 1
 STARTING_Y = 1
-
+YES = 'y'
+NO = 'n'
+DIRECTIONS = ['n', 'e', 's', 'w']
 def north(x, y):
     if y==3:
         return False
@@ -29,8 +32,15 @@ def west(x, y):
     else:
         return False 
 
+
+
+x = STARTING_X
+y = STARTING_Y
+coins = 0
+
 def pulling_lever(coins):
-    add_coins = input('Pull a lever (y/n): ')
+    add_coins = random.choice([YES, NO])
+    print('Pull a lever (y/n): ', add_coins.lower())
     if add_coins == 'y' or add_coins == 'Y':
         coins += 1
         print('You received 1 coin, your total is now {}.'.format(coins))
@@ -39,15 +49,8 @@ def pulling_lever(coins):
         return coins
 
 
-    
-    
-
-
-x = STARTING_X
-y = STARTING_Y
-coins = 0
-
 def play(x,y,coins):
+    moves = 0
     while True:
         not_again = True
         print('You can travel: ', end='')
@@ -70,8 +73,9 @@ def play(x,y,coins):
             print('(N)orth or (S)outh', end='')        
         print('.', end='')
         print()
-        direction = input('Direction: ')
-        direction = direction.lower()
+        direction = str(random.choice(DIRECTIONS))
+        moves += 1
+        print('Direction :', direction.lower())
         if direction == 'n' or direction == 'e' or direction == 's' or direction == 'w':
             if direction == 'n' and n == True:
                 y += 1
@@ -96,11 +100,15 @@ def play(x,y,coins):
 
         if x == 3 and y == 1:
             print('Victory!', end=' ')
-            print('Total coins {}.'.format(coins))
+            print('Total coins {}.'.format(coins), end=' ')
+            print('Moves {}.'.format(moves))
             break
     return 
 
+
+
 def main():
+    random.seed(int(input('Input seed: ')))
     play(x,y,coins)
     choice = input("Play again (y/n): ")
     while choice == "y" or choice == "Y":
