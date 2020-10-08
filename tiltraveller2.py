@@ -46,9 +46,10 @@ def pulling_lever(coins):
 x = STARTING_X
 y = STARTING_Y
 coins = 0
-not_again = True
+
 
 while True:
+    not_again = True
     print('You can travel: ', end='')
     n = north(x, y)
     e = east(x, y)
@@ -88,9 +89,9 @@ while True:
         print('Not a valid direction!')
         not_again = False
 
-    
-    if x == 1 and y == 2 or x == 2 and y == 2 or x == 3 and y == 2:
-        coins = pulling_lever(coins)
+    if not_again:
+        if x == 1 and y == 2 or x == 2 and y == 2 or x == 3 and y == 2:
+            coins = pulling_lever(coins)
 
 
 
