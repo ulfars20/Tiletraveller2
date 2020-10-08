@@ -33,7 +33,7 @@ def pulling_lever(coins):
     add_coins = input('Pull a lever (y/n): ')
     if add_coins == 'y' or add_coins == 'Y':
         coins += 1
-        print('You recieved 1 coin, your toal is now {}'.format(coins))
+        print('You received 1 coin, your total is now {}.'.format(coins))
         return coins
     elif add_coins == 'n' or add_coins == 'N':
         return coins
@@ -88,14 +88,15 @@ while True:
         print('Not a valid direction!')
         not_again = False
 
-    while not_again:
-        if x == 1 and y == 2 or x == 2 and y == 2 or x == 3 and y == 2:
-            coins = pulling_lever(coins)
+    
+    if x == 1 and y == 2 or x == 2 and y == 2 or x == 3 and y == 2:
+        coins = pulling_lever(coins)
 
 
 
 
     if x == 3 and y == 1:
-        print('Victory!')
+        print('Victory!', end=' ')
+        print('Total coins {}.'.format(coins))
         break
 
