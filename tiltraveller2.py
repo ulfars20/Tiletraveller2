@@ -1,3 +1,6 @@
+STARTING_X = 1
+STARTING_Y = 1
+
 def north(x, y):
     if y==3:
         return False
@@ -26,8 +29,24 @@ def west(x, y):
     else:
         return False 
 
-x = 1
-y = 1
+def pulling_lever(coins):
+    add_coins = input('Pull a lever (y/n): ')
+    if add_coins == 'y' or add_coins == 'Y':
+        coins += 1
+        print('You recieved 1 coin, your toal is now {}'.format(coins))
+        return coins
+    elif add_coins == 'n' or add_coins == 'N':
+        return coins
+
+
+    
+    
+
+
+x = STARTING_X
+y = STARTING_Y
+coins = 0
+not_again = True
 
 while True:
     print('You can travel: ', end='')
@@ -62,13 +81,21 @@ while True:
         elif direction == 'w' and w == True:
              x -= 1
         else: 
+            not_again = False
             print('Not a valid direction!')
 
     else:
         print('Not a valid direction!')
+        not_again = False
+
+    while not_again:
+        if x == 1 and y == 2 or x == 2 and y == 2 or x == 3 and y == 2:
+            coins = pulling_lever(coins)
+
+
+
 
     if x == 3 and y == 1:
         print('Victory!')
         break
 
-#https://github.com/ulfars20/TileTraveller
